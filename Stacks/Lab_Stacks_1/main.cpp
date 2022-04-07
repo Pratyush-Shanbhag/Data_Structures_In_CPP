@@ -10,26 +10,30 @@ using namespace std;
 
 class Stack_int
 {
-private:
-   // Structure for the stack nodes
-   struct StackNode {
-       int value;           // Value in the node
-       StackNode *next;     // Pointer to next node
-   };
+    private:
+        // Structure for the stack nodes
+        struct StackNode {
+            int value;           // Value in the node
+            StackNode *next;     // Pointer to next node
+        };
 
-   StackNode *top;          // Pointer to the stack top
-   int length;
+        StackNode *top;          // Pointer to the stack top
+        int length;
 
-public:
-   Stack_int(){ top = NULL; length = 0; }    //Constructor
-   //~Stack_int();                            // Destructor
+    public:
+        Stack_int(){ top = NULL; length = 0; }    //Constructor
+        //~Stack_int();                            // Destructor
 
-   // Stack operations
-   bool isEmpty() {/* Write your code here */ }
-   bool push(int);
-   // int pop();
-   int peek() {/* Write your code here */ }
-   int getLength() {/* Write your code here */ }
+        // Stack operations
+        bool isEmpty() { return length == 0; }
+        bool push(int);
+        // int pop();
+        int peek() {
+            if(length == 0)
+                return -1;
+            return top->value; 
+        }
+        int getLength() { return length; }
 };
 
 /**~*~*~*

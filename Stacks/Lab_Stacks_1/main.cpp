@@ -63,6 +63,19 @@ int main() {
    Stack_int s;
    int item;
 
+   cin >> item;
+   while(item > 0) {
+      s.push(item);
+      cin >> item;
+   }
+   
+   cout << s.getLength() << endl;
+   item = s.peek();
+   if(item == -1)
+      cout << "Empty Stack!" << endl;
+   else
+      cout << item << endl;
+   cout << s.getLength() << endl;
      
    return 0;
 }

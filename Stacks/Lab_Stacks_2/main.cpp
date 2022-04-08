@@ -58,7 +58,21 @@ bool Stack_int::push(int item)
 *~**/
 Stack_int::~Stack_int()
 {
+    StackNode *currNode;
+    StackNode *tempNode;
 
+    // Position nodePtr at the top of the stack.
+    currNode = top;
+
+    // Traverse the list deleting each node.
+    while (currNode) 
+    {
+        cout << currNode->value << " - deleted!" << endl;
+        tempNode = currNode->next;
+        delete currNode;
+        currNode = tempNode;
+    }
+    cout << "Empty stack!" << endl;
 }
 
 int main() {

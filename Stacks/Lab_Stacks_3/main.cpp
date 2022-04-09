@@ -69,6 +69,20 @@ int Stack_int::pop() {
 int main() {
     Stack_int s;
     int item;
+
+    cin >> item;
+    while(item > 0) {
+        s.push(item);
+        cin >> item;
+    }
     
+    if(s.isEmpty())
+        cout << "Empty Stack!" << endl;
+    else {
+        while(!s.isEmpty()) {
+            cout << s.pop() << endl;
+        }
+    }
+
     return 0;
 }

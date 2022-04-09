@@ -60,7 +60,10 @@ bool Stack_int::push(int item)
 *~**/
 /* Define the pop function */
 int Stack_int::pop() {
-
+    int item = top->value;
+    top = top->next;
+    length--;
+    return item;
 }
 
 int main() {

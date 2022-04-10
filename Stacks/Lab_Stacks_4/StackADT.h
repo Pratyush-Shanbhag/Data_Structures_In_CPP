@@ -42,7 +42,20 @@ class Stack
   Member function push inserts the argument onto
   the stack.
 *~**/
-
+template <class T>
+bool Stack<T>::push(T item) {
+    StackNode *newNode;
+    newNode = new StackNode;
+    if (!newNode)
+        return false;
+    newNode->value = item;
+    
+    newNode->next = top;
+    top = newNode;
+    length++;
+    
+    return true;
+}
 
 
 

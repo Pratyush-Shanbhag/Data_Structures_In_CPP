@@ -8,27 +8,34 @@
 template <class T>
 class Stack
 {
-private:
-    // Structure for the stack nodes
-    struct StackNode
-    {
-      T value;          // Value in the node
-      StackNode *next;  // Pointer to next node
-    };
+    private:
+        // Structure for the stack nodes
+        struct StackNode
+        {
+        T value;          // Value in the node
+        StackNode *next;  // Pointer to next node
+        };
 
-    StackNode *top;     // Pointer to the stack top
-    int length;
+        StackNode *top;     // Pointer to the stack top
+        int length;
 
-public:
-    // Constructor
-    // Destructor
-
-    // Stack operations:
-    // push()
-    // pop()
-    // peek()
-    // isEmpty()
-    // getLength()
+    public:
+        // Constructor
+        Stack() { top = NULL; length = 0; }
+        // Destructor
+        ~Stack();
+      
+        // Stack operations:
+        // push()
+        bool push(T);
+        // pop()
+        T pop();
+        // peek()
+        T peek();
+        // isEmpty()
+        bool isEmpty();
+        // getLength()
+        int getLength();
 };
 
 /**~*~*~*~*

@@ -31,11 +31,11 @@ class Stack
         // pop()
         T pop();
         // peek()
-        T peek();
+        T peek() { return top->value; }
         // isEmpty()
-        bool isEmpty();
+        bool isEmpty() { return length == 0; }
         // getLength()
-        int getLength();
+        int getLength() { return length; }
 };
 
 /**~*~*~*~*

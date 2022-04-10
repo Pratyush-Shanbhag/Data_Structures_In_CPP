@@ -80,6 +80,16 @@ T Stack<T>::pop() {
   Destructor:
   Traverses the list deleting each node (without calling pop)
 *~**/
-
+template <class T>
+Stack<T>::~Stack() {
+    StackNode *currNode = top;
+    StackNode *tempNode;
+    
+    while(currNode != NULL) {
+        tempNode = currNode->next;
+        delete currNode;
+        currNode = tempNode;
+    }
+}
 
 #endif

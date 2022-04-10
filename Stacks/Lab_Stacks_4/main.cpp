@@ -72,3 +72,19 @@ void processInput(Stack<int> s, string filename) {
    else
       printStack(s, s.getLength());
 }
+
+
+/**~*~*~*~*~
+This function displays the project's title
+*~*/
+void printStack(Stack<int> s, int num) {
+   if(s.getLength() < num)
+      cout << "Error" << endl;
+   else {
+      cout << "Stack: ";
+      for(int i = 0; i < num; i++) {
+         cout << s.pop() << " ";
+      }
+      cout << endl;
+   }
+}

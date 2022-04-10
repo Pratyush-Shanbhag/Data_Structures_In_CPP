@@ -16,6 +16,8 @@ IDE: VSCode
 using namespace std;
 
 void printInfo();
+void processInput(Stack<int>, string);
+void printStack(Stack<int>, int);
 
 
 int main()
@@ -45,3 +47,28 @@ void printInfo()
     cout << " ~*~ Project: Stack ADT ~*~ " << endl;
 }
 
+
+/**~*~*~*~*~
+This function displays the project's title
+*~*/
+void processInput(Stack<int> s, string filename) {
+   int num;
+   ifstream infile;
+   infile.open(filename);
+
+   while(infile >> num) {
+      if(num == 0)
+         cout << "Count: " << s.getLength() << endl;
+      else if(num == 1)
+         cout << "Top: " << s.peek() << endl;
+      else if(num > 1)
+         s.push(num);
+      else {
+         printStack(s, abs(num));
+      }
+   }
+   if(s.isEmpty())
+      cout << "Empty" << endl;
+   else
+      printStack(s, s.getLength());
+}

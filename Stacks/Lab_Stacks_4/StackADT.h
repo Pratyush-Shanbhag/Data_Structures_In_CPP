@@ -20,21 +20,14 @@ class Stack
         int length;
 
     public:
-        // Constructor
         Stack() { top = NULL; length = 0; }
-        // Destructor
         ~Stack();
       
         // Stack operations:
-        // push()
         bool push(T);
-        // pop()
         T pop();
-        // peek()
         T peek() { return top->value; }
-        // isEmpty()
         bool isEmpty() { return length == 0; }
-        // getLength()
         int getLength() { return length; }
 };
 

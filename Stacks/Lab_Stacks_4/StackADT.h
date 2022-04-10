@@ -65,7 +65,13 @@ bool Stack<T>::push(T item) {
   of the stack and returns it.
   Assume stack is not empty.
 *~**/
-
+template <class T>
+T Stack<T>::pop() {
+    T item = top->value;
+    top = top->next;
+    length--;
+    return item;
+}
 
 
 

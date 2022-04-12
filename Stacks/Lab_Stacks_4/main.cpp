@@ -16,7 +16,7 @@ IDE: VSCode
 using namespace std;
 
 void printInfo();
-void processInput(Stack<int>*, string);
+bool processInput(Stack<int>*, string);
 void printStack(Stack<int>*, int);
 
 
@@ -51,7 +51,7 @@ void printInfo()
 /**~*~*~*~*~
 This function displays the project's title
 *~*/
-void processInput(Stack<int> *s, string filename) {
+bool processInput(Stack<int> *s, string filename) {
    int num;
    ifstream infile;
    infile.open(filename);

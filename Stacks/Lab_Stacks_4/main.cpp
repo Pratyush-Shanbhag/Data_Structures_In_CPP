@@ -22,18 +22,21 @@ void printStack(Stack<int>*, int);
 
 int main()
 {
-    printInfo();
+   printInfo();
    
-    cout << "Enter input file name: " << endl;
-    string filename;
-    getline(cin, filename); // assume valid
+   cout << "Enter input file name: " << endl;
+   string filename;
+   getline(cin, filename); // assume valid
     
-    // declare stack here
-        
-    // call a function to process the input file
+   Stack<int> s;
    
-    // call a function to print the stack
-    
+   if(processInput(&s, filename)) {
+      cout << "Stack: ";
+      if(s.isEmpty())
+         cout << "Empty" << endl;
+      else
+         printStack(&s, s.getLength());
+   }
 
     return 0;
 }

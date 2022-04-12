@@ -16,8 +16,8 @@ IDE: VSCode
 using namespace std;
 
 void printInfo();
-void processInput(Stack<int>, string);
-void printStack(Stack<int>, int);
+void processInput(Stack<int>*, string);
+void printStack(Stack<int>*, int);
 
 
 int main()
@@ -51,39 +51,39 @@ void printInfo()
 /**~*~*~*~*~
 This function displays the project's title
 *~*/
-void processInput(Stack<int> s, string filename) {
+void processInput(Stack<int> *s, string filename) {
    int num;
    ifstream infile;
    infile.open(filename);
 
    while(infile >> num) {
       if(num == 0)
-         cout << "Count: " << s.getLength() << endl;
+         cout << "Count: " << s->getLength() << endl;
       else if(num == 1)
-         cout << "Top: " << s.peek() << endl;
+         cout << "Top: " << s->peek() << endl;
       else if(num > 1)
-         s.push(num);
+         s->push(num);
       else {
          printStack(s, abs(num));
       }
    }
-   if(s.isEmpty())
+   if(s->isEmpty())
       cout << "Empty" << endl;
    else
-      printStack(s, s.getLength());
+      printStack(s, s->getLength());
 }
 
 
 /**~*~*~*~*~
 This function displays the project's title
 *~*/
-void printStack(Stack<int> s, int num) {
-   if(s.getLength() < num)
+void printStack(Stack<int> *s, int num) {
+   if(s->getLength() < num)
       cout << "Error" << endl;
    else {
       cout << "Stack: ";
       for(int i = 0; i < num; i++) {
-         cout << s.pop() << " ";
+         cout << s->pop() << " ";
       }
       cout << endl;
    }

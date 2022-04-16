@@ -60,8 +60,10 @@ bool Stack_int::push(int item)
 *~**/
 /* Define the pop function */
 int Stack_int::pop() {
+    StackNode* tempNode = top;
     int item = top->value;
     top = top->next;
+    delete top;
     length--;
     return item;
 }

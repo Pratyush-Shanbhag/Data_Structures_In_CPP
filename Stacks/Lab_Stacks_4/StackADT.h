@@ -60,8 +60,10 @@ bool Stack<T>::push(T item) {
 *~**/
 template <class T>
 T Stack<T>::pop() {
+    StackNode* tempNode = top;
     T item = top->value;
     top = top->next;
+    delete top;
     length--;
     return item;
 }

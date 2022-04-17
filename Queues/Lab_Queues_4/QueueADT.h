@@ -26,9 +26,9 @@ class Queue
         // Stack operations:
         bool push(T);
         T pop();
-        T peek() {}
-        bool isEmpty() {}
-        int getLength() {}
+        T peek() { return top->value; }
+        bool isEmpty() { return length == 0; }
+        int getLength() { return length; }
 };
 
 #endif

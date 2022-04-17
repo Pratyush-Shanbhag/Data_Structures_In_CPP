@@ -39,16 +39,24 @@ class Queue
 *~**/
 template <class T>
 bool Queue<T>::push(T item) {
-    QueueNode *newNode;
+    QueueNode *newNode; // Pointer to a new node
+
+    // Allocate a new node and store num there.
     newNode = new QueueNode;
     if (!newNode)
         return false;
     newNode->value = item;
+    newNode->next = NULL;
     
-    newNode->next = top;
-    top = newNode;
+    // Update links and counter
+    if (!front) // front is NULL: empty queue
+        front = newNode;
+    else
+        rear->next = newNode;
+        
+    rear = newNode;
     length++;
-    
+
     return true;
 }
 
@@ -62,10 +70,10 @@ bool Queue<T>::push(T item) {
 *~**/
 template <class T>
 T Queue<T>::pop() {
-    QueueNode* tempNode = top;
-    T item = top->value;
-    top = top->next;
-    delete top;
+    QueueNode* tempNode = front;
+    T item = front->value;
+    front = front->next;
+    delete tempNode;
     length--;
     return item;
 }

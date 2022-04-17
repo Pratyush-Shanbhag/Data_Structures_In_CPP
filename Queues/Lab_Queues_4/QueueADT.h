@@ -16,17 +16,19 @@ class Queue
             QueueNode *next;  // Pointer to next node
         };
 
-        QueueNode *top;     // Pointer to the stack top
-        int length;
+        QueueNode *front;          // Pointer to the first node
+        QueueNode *rear;           // Pointer to the last node
+        int length;                // Number of nodes in the queue
 
     public:
-        Queue() { top = NULL; length = 0; }
+        Queue() { front = rear = NULL; length = 0; }
         ~Queue();
       
         // Stack operations:
         bool push(T);
         T pop();
         T peek() { return top->value; }
+        T peekRear() { return rear->value; }
         bool isEmpty() { return length == 0; }
         int getLength() { return length; }
 };
@@ -37,8 +39,8 @@ class Queue
 *~**/
 template <class T>
 bool Queue<T>::push(T item) {
-    StackNode *newNode;
-    newNode = new StackNode;
+    QueueNode *newNode;
+    newNode = new QueueNode;
     if (!newNode)
         return false;
     newNode->value = item;
@@ -60,7 +62,7 @@ bool Queue<T>::push(T item) {
 *~**/
 template <class T>
 T Queue<T>::pop() {
-    StackNode* tempNode = top;
+    QueueNode* tempNode = top;
     T item = top->value;
     top = top->next;
     delete top;
@@ -77,8 +79,8 @@ T Queue<T>::pop() {
 *~**/
 template <class T>
 Queue<T>::~Queue() {
-    StackNode *currNode = top;
-    StackNode *tempNode;
+    QueueNode *currNode = top;
+    QueueNode *tempNode;
     
     while(currNode != NULL) {
         tempNode = currNode->next;

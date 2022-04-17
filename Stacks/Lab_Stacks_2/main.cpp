@@ -72,6 +72,9 @@ Stack_int::~Stack_int()
         delete currNode;
         currNode = tempNode;
     }
+
+    length = 0;
+    
     cout << "Empty stack!" << endl;
 }
 

@@ -85,6 +85,8 @@ Stack<T>::~Stack() {
         delete currNode;
         currNode = tempNode;
     }
+
+    length = 0;
 }
 
 #endif

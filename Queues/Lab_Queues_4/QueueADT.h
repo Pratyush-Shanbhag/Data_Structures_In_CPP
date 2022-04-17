@@ -60,9 +60,6 @@ bool Queue<T>::push(T item) {
     return true;
 }
 
-
-
-
 /**~*~*~*~*
   Member function pop deletes the value at the top
   of the stack and returns it.
@@ -77,8 +74,6 @@ T Queue<T>::pop() {
     length--;
     return item;
 }
-
-
 
 
 /**~*~*~*~*

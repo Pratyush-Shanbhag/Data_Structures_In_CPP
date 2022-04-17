@@ -66,7 +66,7 @@ bool Queue<T>::push(T item) {
 /**~*~*~*~*
   Member function pop deletes the value at the top
   of the stack and returns it.
-  Assume stack is not empty.
+  Assume queue is not empty.
 *~**/
 template <class T>
 T Queue<T>::pop() {
@@ -87,7 +87,7 @@ T Queue<T>::pop() {
 *~**/
 template <class T>
 Queue<T>::~Queue() {
-    QueueNode *currNode = top;
+    QueueNode *currNode = front;
     QueueNode *tempNode;
     
     while(currNode != NULL) {
@@ -95,6 +95,10 @@ Queue<T>::~Queue() {
         delete currNode;
         currNode = tempNode;
     }
+
+    length = 0;
+        
+    cout << "Empty queue!" << endl;
 }
 
 #endif

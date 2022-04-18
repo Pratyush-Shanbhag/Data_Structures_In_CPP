@@ -1,5 +1,5 @@
 /**~*~*~*~*
-   Queue template
+  Queue template
 *~*/
 
 #ifndef QUEUE_ADT
@@ -97,7 +97,10 @@ Queue<T>::~Queue() {
 }
 
 /**~*~*~*~*
-
+  This function returns the value of the
+  node that is at a certain specified index
+  in the queue. This index is passed in as an
+  int parameter
 *~**/
 template <class T>
 T Queue<T>::getItem(int index) {

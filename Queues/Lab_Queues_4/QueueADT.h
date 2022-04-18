@@ -31,6 +31,8 @@ class Queue
         T peekRear() { return rear->value; }
         bool isEmpty() { return length == 0; }
         int getLength() { return length; }
+
+        T getItem(int);
 };
 
 /**~*~*~*~*
@@ -91,9 +93,22 @@ Queue<T>::~Queue() {
         currNode = tempNode;
     }
 
-    length = 0;
-        
-    cout << "Empty queue!" << endl;
+    length = 0;        
+}
+
+/**~*~*~*~*
+
+*~**/
+template <class T>
+T Queue<T>::getItem(int index) {
+    QueueNode *currNode = front;
+    int num = 0;
+
+    while(num < index) {
+        currNode = currNode->next;
+    }
+
+    return currNode->value;     
 }
 
 #endif

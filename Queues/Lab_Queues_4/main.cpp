@@ -29,28 +29,34 @@ int main() {
         cin >> item;
     }
 
-    // Test the getLength function: - display the number of elements in the first queue
-    cout << que1.getLength() << endl;
-    
-    // Create the second queue (doubles)
-    Queue<double> que2;
-
-    // Test the getLength function: - display the number of elements in the second queue
-                                // (it should be 0!)
-    cout << que2.getLength();
-
-    // Write another loop to enter the number of units (double) into a parallel queue.
-    double num;
-    for(int i = 0; i < que1.getLength(); i++) {
-        cin >> num;
-        que2.push(num);
+    if(que1.isEmpty()) {
+        cout << "Empty queue!" << endl;
     }
-    
-    // Display the two queues in parallel.
-    
-    // Display the front element in the first queue
-    
-    // Display the rear element in the second queue
-    
+    else {
+        // Test the getLength function: - display the number of elements in the first queue
+        cout << que1.getLength() << " ";
+        
+        // Create the second queue (doubles)
+        Queue<double> que2;
+
+        // Test the getLength function: - display the number of elements in the second queue
+                                    // (it should be 0!)
+        cout << que2.getLength() << endl;
+
+        // Write another loop to enter the number of units (double) into a parallel queue.
+        double num;
+        for(int i = 0; i < que1.getLength(); i++) {
+            cin >> num;
+            que2.push(num);
+        }
+        
+        // Display the two queues in parallel.
+        
+        
+        // Display the front element in the first queue
+        
+        // Display the rear element in the second queue
+    }
+
     return 0;
 }

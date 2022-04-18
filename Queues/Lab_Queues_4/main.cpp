@@ -51,11 +51,15 @@ int main() {
         }
         
         // Display the two queues in parallel.
-        
+        for(int i = 0; i < que1.getLength(); i++) {
+            cout << que1.getItem(i) << " " << que2.getItem(i) << endl;
+        }        
         
         // Display the front element in the first queue
+        cout << que1.peek();
         
         // Display the rear element in the second queue
+        cout << que2.peek();
     }
 
     return 0;

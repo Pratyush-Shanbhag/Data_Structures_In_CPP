@@ -106,6 +106,7 @@ T Queue<T>::getItem(int index) {
 
     while(num < index) {
         currNode = currNode->next;
+        num++;
     }
 
     return currNode->value;     

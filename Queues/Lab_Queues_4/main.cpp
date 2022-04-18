@@ -30,7 +30,7 @@ int main() {
     }
 
     if(que1.isEmpty()) {
-        cout << "Empty queue!" << endl;
+        cout << "Empty Queue!" << endl;
     }
     else {
         // Test the getLength function: - display the number of elements in the first queue
@@ -56,10 +56,10 @@ int main() {
         }        
         
         // Display the front element in the first queue
-        cout << que1.peek();
+        cout << que1.peek() << endl;
         
         // Display the rear element in the second queue
-        cout << que2.peek();
+        cout << que2.peekRear() << endl;
     }
 
     return 0;

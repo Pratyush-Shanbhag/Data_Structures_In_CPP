@@ -67,12 +67,30 @@ bool  Queue_str::push(string item)
 *~**/
 Queue_str::~Queue_str()
 {
-    
+   QueueNode *currNode = front;
+   QueueNode *tempNode;
+   
+   while(currNode != NULL) {
+      cout << currNode->value << " - deleted!" << endl;
+      tempNode = currNode->next;
+      delete currNode;
+      currNode = tempNode;
+   }
+   
+   length = 0;
+   
+   cout << "Empty queue!" << endl;
 }
 
 int main() {
    Queue_str que;
    string item;
 
+   cin >> item;
+   while (item != "#" ) {
+      que.push(item);
+      cin >> item;
+   }
+   
    return 0;
 }

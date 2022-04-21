@@ -27,12 +27,12 @@ public:
    //~Queue_str();                                    // Destructor
 
    // Queue operations
-   bool isEmpty() {}
+   bool isEmpty() { return length == 0; }
    bool push(string);
    // string pop();
-   string peek() {}
-   string peekRear() {}
-   int getLength() {}
+   string peek() { return front->value; }
+   string peekRear() { return rear->value; }
+   int getLength() { return length; }
 };
 
 /**~*~*
@@ -67,6 +67,20 @@ int main() {
 
    Queue_str que;
    string item;
+   
+   cin >> item;
+   while(item != "#") {
+      que.push(item);
+      cin >> item;
+   }
+   
+   cout << que.getLength() << endl;
+   if(!que.isEmpty()) {
+      cout << que.peek() << endl;
+      cout << que.peekRear() << endl;
+   }
+   else
+      cout << "Empty Queue!" << endl;
 
    return 0;
 }

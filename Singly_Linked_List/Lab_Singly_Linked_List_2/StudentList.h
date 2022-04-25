@@ -34,9 +34,6 @@ public:
     void insertNode(Student);
     void displayList() const;
     void displayList(double) const;
-    void displayList(double, double) const;
-    
-   /* Write your code here */
-   
+    void displayList(double, double) const;   
 };
 #endif

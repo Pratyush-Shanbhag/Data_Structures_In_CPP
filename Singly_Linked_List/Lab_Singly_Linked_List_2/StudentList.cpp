@@ -29,7 +29,6 @@ StudentList::StudentList()
 // stored in each node of the linked list
 // pointed to by head.                              
 //**************************************************
-
 void StudentList::displayList() const
 {
     ListNode *pCur;  // To move through the list
@@ -52,15 +51,33 @@ void StudentList::displayList() const
 
 
 //**************************************************
-// the first overloaded displayList: ...
-// 
-//                               
+// The first overloaded displayList:
+// shows the value stored in each node of
+// the linked list with a gpa less than or
+// equal to the double parameter maxGPA.
 //**************************************************
-/* Write your code here, including comment above */
+void StudentList::displayList(double maxGPA) const
+{
+    ListNode *pCur;  // To move through the list
 
+    // Position pCur: skip the head of the list.
+    pCur = head->next;
+
+    // While pCur points to a node, traverse the list.
+    cout << endl;
+    while (pCur->stu.gpa <= maxGPA)
+    {
+        // Display the value in this node.
+        cout << pCur->stu.gpa << " " << pCur->stu.name << endl;
+
+        // Move to the next node.
+        pCur = pCur->next;
+    }
+    cout << endl;
+}
 
 //**************************************************
-// the second overloaded displayList: ...
+// The second overloaded displayList: ...
 // 
 //                               
 //**************************************************

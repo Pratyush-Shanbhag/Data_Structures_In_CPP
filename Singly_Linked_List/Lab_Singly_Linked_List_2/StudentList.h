@@ -33,6 +33,8 @@ public:
     int getCount() const {return count;}
     void insertNode(Student);
     void displayList() const;
+    void displayList(double) const;
+    void displayList(double, double) const;
     
    /* Write your code here */
    

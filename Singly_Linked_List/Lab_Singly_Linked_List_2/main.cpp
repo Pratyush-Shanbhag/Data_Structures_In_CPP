@@ -44,4 +44,3 @@ void buildList(StudentList &list)
     }
     
 }
-

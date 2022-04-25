@@ -84,6 +84,12 @@ void StudentList::displayList(double maxGPA) const
 //**************************************************
 void StudentList::displayList(double minGPA, double maxGPA) const
 {
+    if(minGPA > maxGPA) {
+        double temp = minGPA;
+        minGPA = maxGPA;
+        maxGPA = temp;
+    }
+
     ListNode *pCur;  // To move through the list
 
     // Position pCur: skip the head of the list.

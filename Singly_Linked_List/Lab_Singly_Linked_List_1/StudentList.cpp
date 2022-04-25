@@ -68,7 +68,7 @@ void StudentList::insertNode(Student dataIn)
     pCur = head->next;
    
     // Find location: skip all nodes whose gpa is less than dataIn's gpa
-    while (pCur != NULL && pCur->stu.name < dataIn.name)
+    while (pCur != NULL && pCur->stu.gpa > dataIn.gpa)
     {
         pPre = pCur;
         pCur = pCur->next;
@@ -88,5 +88,12 @@ void StudentList::insertNode(Student dataIn)
 //**************************************************
 StudentList::~StudentList()
 {
-  
+    ListNode *currNode = head;
+    ListNode *tempNode;
+    
+    while(currNode != NULL) {
+        tempNode = currNode->next;
+        delete currNode;
+        currNode = tempNode;
+    }
 }

@@ -62,17 +62,19 @@ bool Queue<T>::push(T item) {
     return true;
 }
 
-/**~*~*~*~*
-  Member function pop deletes the value at the top
-  of the stack and returns it.
-  Assume queue is not empty.
+/**~*~*~*
+  Member function dequeue deletes the value at the front
+  of the queue and returns it.
+  Assume queue has at least one node
 *~**/
 template <class T>
 T Queue<T>::pop() {
-    QueueNode* tempNode = front;
+    QueueNode* tempNode = front->next;
     T item = front->value;
-    front = front->next;
-    delete tempNode;
+    delete front;
+    front = tempNode;
+    if(front == NULL)
+        rear = NULL;
     length--;
     return item;
 }

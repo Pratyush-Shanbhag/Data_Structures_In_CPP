@@ -21,13 +21,12 @@ int main()
     list.displayList();
     double gpa;
     cout << "Enter a gpa: ";
-    cint >> gpa;
+    cin >> gpa;
     list.displayList(gpa);
     double from, to;
     cout << "Enter a gpa range: ";
     cin >> from >> to;
     list.displayList(from, to);
-
     
     return 0;
 }

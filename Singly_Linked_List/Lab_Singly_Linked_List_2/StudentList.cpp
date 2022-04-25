@@ -65,7 +65,7 @@ void StudentList::displayList(double maxGPA) const
 
     // While pCur points to a node, traverse the list.
     cout << endl;
-    while (pCur->stu.gpa <= maxGPA)
+    while (pCur && pCur->stu.gpa <= maxGPA)
     {
         // Display the value in this node.
         cout << pCur->stu.gpa << " " << pCur->stu.name << endl;
@@ -81,7 +81,27 @@ void StudentList::displayList(double maxGPA) const
 // 
 //                               
 //**************************************************
-/* Write your code here, including comment above */
+void StudentList::displayList(double minGPA, double maxGPA) const
+{
+    ListNode *pCur;  // To move through the list
+
+    // Position pCur: skip the head of the list.
+    pCur = head->next;
+
+    // While pCur points to a node, traverse the list.
+    cout << endl;
+    while (pCur && pCur->stu.gpa <= maxGPA)
+    {
+        // Display the value in this node.
+        if(pCur->stu.gpa >= minGPA)
+            cout << pCur->stu.gpa << " " << pCur->stu.name << endl;
+
+        // Move to the next node.
+        pCur = pCur->next;
+    }
+    cout << endl;
+}
+
 //**************************************************
 // The insertNode function inserts a node with
 // stu copied to its value member.

@@ -1,6 +1,6 @@
 // Implementation file for the Student List class
-// Modified by:
-// IDE:
+// Modified by: Pratyush Shanbhag
+// IDE: VSCode
 
 #include <iostream>         // For cout  and NULL
 #include "StudentList.h"

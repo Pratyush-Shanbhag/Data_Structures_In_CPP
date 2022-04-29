@@ -4,8 +4,8 @@
  This program builds and displays a sorted list
  The list is sorted in ascending order by name
  
- Modified by:
- IDE: 
+ Modified by: Pratyush Shanbhag
+ IDE: VSCode
  
  */
 #include <iostream>

@@ -1,6 +1,6 @@
 // Specification file for the Student class
-// Modified by:
-// IDE:
+// Modified by: Pratyush Shanbhag
+// IDE: VSCode
 
 #ifndef STUDENT_H
 #define STUDENT_H
@@ -15,15 +15,29 @@ using std::string;
 
 class Student
 {
-private:
-/* Write your code here: gpa - a double, name - a string */
+    private:
+        double gpa;
+        string name;
 
-    
-public:
-    /* Write your code here: default and overloaded constructors  */
-    
-    // Setters and getters
-    /* Write your code here: a setter and a getter for each data member of the class  */
-    
+        
+    public:
+        Student() {
+            gpa = 0.0;
+            name = "";
+        }
+
+        Student(double num, string str) {
+            gpa = num;
+            name = str;
+        }
+        
+        // Setters and getters
+        void setGPA(double num) { gpa = num; }
+
+        double getGPA() { return gpa; }
+
+        void setName(string str) { name = str; }
+
+        string getName() { return name; }
 };
 #endif

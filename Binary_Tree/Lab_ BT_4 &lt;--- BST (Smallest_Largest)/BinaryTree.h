@@ -1,6 +1,6 @@
 // Binary tree abstract base class
 // Created by A. Student
-// Modified by:
+// Modified by: Pratyush Shanbhag
  
 #ifndef _BINARY_TREE
 #define _BINARY_TREE
@@ -63,7 +63,14 @@ void BinaryTree<ItemType>::destroyTree(BinaryNode<ItemType>* nodePtr)
 template<class ItemType>
 void BinaryTree<ItemType>::_preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
-	/* */ 
+	/* */
+    if (nodePtr) // != NULL
+    {
+        ItemType item = nodePtr->getItem();
+		visit(item);
+        _preorder(visit, nodePtr->getLeftPtr());
+        _preorder(visit, nodePtr->getRightPtr());
+    }
 }  
 
 //Inorder Traversal
@@ -83,7 +90,14 @@ void BinaryTree<ItemType>::_inorder(void visit(ItemType &), BinaryNode<ItemType>
 template<class ItemType>
 void BinaryTree<ItemType>::_postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
-  /* */
+	/* */
+    if (nodePtr) // != NULL
+    {
+        ItemType item = nodePtr->getItem();
+        _postorder(visit, nodePtr->getLeftPtr());
+		_postorder(visit, nodePtr->getRightPtr());
+        visit(item);
+    }
 }  
 
 

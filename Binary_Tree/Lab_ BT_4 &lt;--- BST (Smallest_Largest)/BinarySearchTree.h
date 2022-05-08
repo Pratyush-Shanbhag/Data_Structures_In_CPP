@@ -1,6 +1,6 @@
 // Binary Search Tree ADT
 // Created by A. Student
-// Modified by: ???
+// Modified by: Pratyush Shanbhag
  
 #ifndef _BINARY_SEARCH_TREE
 #define _BINARY_SEARCH_TREE
@@ -119,7 +119,12 @@ BinaryNode<ItemType>* BinarySearchTree<ItemType>::_insert(BinaryNode<ItemType>* 
 template<class ItemType>
 BinaryNode<ItemType>* BinarySearchTree<ItemType>::_findSmallest(BinaryNode<ItemType>* nodePtr, ItemType & smallest) const
 {
- /* Write your code here */
+    /* Write your code here */
+    if(nodePtr->getLeftPtr()) {
+        return _findSmallest(nodePtr->getLeftPtr(), smallest);
+    }
+    smallest = nodePtr->getItem();
+    return nodePtr;
 }
 
 //Implementation to find the largest: recursive
@@ -127,7 +132,11 @@ template<class ItemType>
 BinaryNode<ItemType>* BinarySearchTree<ItemType>::_findLargest(BinaryNode<ItemType>* nodePtr, ItemType & biggest) const
 {
     /* Write your code here */
+    if(nodePtr->getRightPtr()) {
+        return _findLargest(nodePtr->getRightPtr(), biggest);
+    }
+    biggest = nodePtr->getItem();
+    return nodePtr;
 }
-
 
 #endif

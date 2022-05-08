@@ -4,43 +4,45 @@
 
 struct Data
 {
-    int num;
+   int num;
    // more fields could be added if needed
 };
 
 class BinaryTree
 {
-private:
-   struct Node
-   {
-      Data data;     // The value in this node
-      Node *left;    // To point to the left node
-      Node *right;   // To point to the right node
-   };
+   private:
+      struct Node
+      {
+         Data data;     // The value in this node
+         Node *left;    // To point to the left node
+         Node *right;   // To point to the right node
+      };
 
-   Node *root;       // root of the tree
-   int count;        // number of nodes in the tree
+      Node *root;       // root of the tree
+      int count;        // number of nodes in the tree
 
-public:
-   // Constructor
-   BinaryTree();
+   public:
+      // Constructor
+      BinaryTree();
 
-   // Destructor
-   ~BinaryTree();
+      // Destructor
+      ~BinaryTree();
 
-   // Binary Tree operations
-   void insert(Data dataIn);
-   void inOrder() const;
-   /* Write your code here */
-
-
-
-private:
-    void _inOrder(Node *root) const;
-    /* Write your code here */
+      // Binary Tree operations
+      void insert(Data dataIn);
+      void inOrder() const;
+      /* Write your code here */
+      void postOrder() const;
+      void preOrder() const;
 
 
 
-    void _destroy(Node *root);
+   private:
+      void _inOrder(Node *root) const;
+      /* Write your code here */
+      void _postOrder(Node *root) const;
+      void _preOrder(Node *root) const;
+
+      void _destroy(Node *root);
 };
 #endif

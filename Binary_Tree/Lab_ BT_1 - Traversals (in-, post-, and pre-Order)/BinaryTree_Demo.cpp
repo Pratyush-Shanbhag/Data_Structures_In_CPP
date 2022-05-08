@@ -36,18 +36,21 @@ int main( void )
     
     cout << "  Inorder: ";
     /* Write your code here */
+    tree.inOrder();
     cout << endl;
     
     if ( option == 'T' || option == 't')
     {
         cout << "Postorder: ";
         /* Write your code here */
+        tree.postOrder();
         cout << endl;
     }
     if ( option == 'E' || option == 'e')
     {
         cout << " Preorder: ";
         /* Write your code here */
+        tree.preOrder();
         cout << endl;
     }
     return 0;

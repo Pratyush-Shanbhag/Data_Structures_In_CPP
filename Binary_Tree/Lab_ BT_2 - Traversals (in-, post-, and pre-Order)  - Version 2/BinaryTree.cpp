@@ -20,28 +20,51 @@ BinaryTree::BinaryTree()
    This function calls a recursive function to traverse the
    tree in postorder
 *~**/
-
 /* Write your code here */
+void BinaryTree::postOrder(void visit(const Data &)) const
+{
+    _postOrder(root, visit);
+}
 
 /**~*~*
    Postorder Traversal of the Binary Tree:
    Left-Right-Root
 *~**/
 /* Write your code here */
+void BinaryTree::_inOrder(Node *root, void visit(const Data &)) const
+{
+    if (root)
+    {
+        _postOrder(root->left, visit);
+        _postOrder(root->right, visit);
+        visit(root->data);
+    }
+}
 
 /**~*~*
    This function calls a recursive function to traverse the
    tree in preorder
 *~**/
 /* Write your code here */
+void BinaryTree::preOrder(void visit(const Data &)) const
+{
+    _preOrder(root, visit);
+}
 
 /**~*~*
-   Postorder Traversal of the Binary Tree:
-   Left-Right-Root
+   Preorder Traversal of the Binary Tree:
+   Root-Left-Right
 *~**/
 /* Write your code here */
-
-
+void BinaryTree::_preOrder(Node *root, void visit(const Data &)) const
+{
+    if (root)
+    {
+        visit(root->data);
+        _postOrder(root->left, visit);
+        _postOrder(root->right, visit);
+    }
+}
 
 /**~*~*
    This function calls a recursive function to traverse the

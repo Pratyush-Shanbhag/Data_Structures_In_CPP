@@ -32,14 +32,16 @@ public:
    void insert(Data dataIn);
    void inOrder(void visit(const Data &)) const;
    /* Write your code here */
+   void postOrder(void visit(const Data &)) const;
+   void preOrder(void visit(const Data &)) const;
 
 
 private:
-    void _inOrder(Node *root, void visit(const Data &)) const;
-    /* Write your code here */
+   void _inOrder(Node *root, void visit(const Data &)) const;
+   /* Write your code here */
+   void _postOrder(Node *root, void visit(const Data &)) const;
+   void _preOrder(Node *root, void visit(const Data &)) const;
 
-
-
-    void _destroy(Node *root);
+   void _destroy(Node *root);
 };
 #endif

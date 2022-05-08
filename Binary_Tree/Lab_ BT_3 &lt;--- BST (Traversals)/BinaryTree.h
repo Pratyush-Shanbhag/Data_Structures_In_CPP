@@ -1,6 +1,6 @@
 // Binary tree abstract base class
 // Created by A. Student
-// Modified by:
+// Modified by: Pratyush Shanbhag
  
 #ifndef _BINARY_TREE
 #define _BINARY_TREE
@@ -64,6 +64,13 @@ template<class ItemType>
 void BinaryTree<ItemType>::_preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
     /* Write your code here */
+    if (nodePtr) // != NULL
+    {
+        ItemType item = nodePtr->getItem();
+        visit(item);
+		_preorder(visit, nodePtr->getLeftPtr());
+        _preorder(visit, nodePtr->getRightPtr());
+    }
 }  
 
 //Inorder Traversal
@@ -84,6 +91,13 @@ template<class ItemType>
 void BinaryTree<ItemType>::_postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
     /* Write your code here */
+    if (nodePtr) // != NULL
+    {
+        ItemType item = nodePtr->getItem();
+        _postorder(visit, nodePtr->getLeftPtr());
+        _postorder(visit, nodePtr->getRightPtr());
+        visit(item);
+    }
 }  
 
 #endif

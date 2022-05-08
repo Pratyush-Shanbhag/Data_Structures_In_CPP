@@ -31,7 +31,7 @@ void BinaryTree::postOrder(void visit(const Data &)) const
    Left-Right-Root
 *~**/
 /* Write your code here */
-void BinaryTree::_inOrder(Node *root, void visit(const Data &)) const
+void BinaryTree::_postOrder(Node *root, void visit(const Data &)) const
 {
     if (root)
     {
@@ -61,8 +61,8 @@ void BinaryTree::_preOrder(Node *root, void visit(const Data &)) const
     if (root)
     {
         visit(root->data);
-        _postOrder(root->left, visit);
-        _postOrder(root->right, visit);
+        _preOrder(root->left, visit);
+        _preOrder(root->right, visit);
     }
 }
 

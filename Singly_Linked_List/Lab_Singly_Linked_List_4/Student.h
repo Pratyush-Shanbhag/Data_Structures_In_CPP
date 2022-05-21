@@ -1,6 +1,6 @@
 // Specification file for the Student class
-// Modified by:
-// IDE:
+// Modified by: Pratyush Shanbhag
+// IDE: VSCode
 
 #ifndef STUDENT_H
 #define STUDENT_H

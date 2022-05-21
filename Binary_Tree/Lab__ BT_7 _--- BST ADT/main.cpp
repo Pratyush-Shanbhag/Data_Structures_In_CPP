@@ -14,6 +14,7 @@ using namespace std;
 void hDisplay(College &);
 void vDisplay(College &);
 void iDisplay(College &, int);
+void buildList(const string&, BinarySearchTree<College>&);
 
 int main()
 {
@@ -32,7 +33,7 @@ int main()
     {
         cout << endl << "Inorder: " << endl;
         /* Write your code here: use hDisplay */
-        
+        bst.inOrder(hDisplay);
         cout << endl;
     }
     cout << "Display Indented List [Y/N]? ";
@@ -41,6 +42,7 @@ int main()
     {
         cout << "Indented List: " << endl;
         /* Write your code here: use iDisplay */
+        bst.printTree(iDisplay);
         cout << endl;
     }
     cout << "Display Leaf Nodes [Y/N]? ";
@@ -49,6 +51,7 @@ int main()
     {
         cout  << "Leaf Nodes: " << endl;
         /* Write your code here: use hDisplay */
+
         cout << endl;
     }
 

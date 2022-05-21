@@ -7,7 +7,8 @@
 #define COLLEGE_H
 
   
-#include<string>
+#include <string>
+#include <cstring>
 
 using std::string;
 using std::ostream;
@@ -47,9 +48,9 @@ class College
         void vDisplay()const;
     
         // overloaded operators
-        bool operator<(const College &college) { return code < college.code; }
-        bool operator>(const College &college) { return code > college.code; }
-        bool operator==(const College &college) { return code == college.code; }
+        bool operator<(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) < 0; }
+        bool operator>(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) > 0; }
+        bool operator==(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) == 0; }
       
         // Friends
         friend ostream &operator << (ostream &, const College &);

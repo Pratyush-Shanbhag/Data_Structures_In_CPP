@@ -1,6 +1,7 @@
 // Specification file for the ListNode class
-// IDE:
-// Written By:
+// Written By: Pratyush Shanbhag
+// IDE: VSCode
+
 #ifndef LISTNODE_H
 #define LISTNODE_H
 #include <iostream>

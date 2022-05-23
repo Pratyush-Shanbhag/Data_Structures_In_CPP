@@ -1,6 +1,6 @@
 // Specification file for the College class
 // Written By: A. Student
-// Changed By:
+// Changed By: Pratyush Shanbhag
 // IDE: Xcode
 
 #ifndef COLLEGE_H
@@ -48,9 +48,9 @@ class College
         void vDisplay()const;
     
         // overloaded operators
-        bool operator<(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) < 0; }
-        bool operator>(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) > 0; }
-        bool operator==(const College &college) { return strcasecmp(code.c_str(), college.code.c_str()) == 0; }
+        bool operator<(const College &college) { return code < college.code; }
+        bool operator>(const College &college) { return code > college.code; }
+        bool operator==(const College &college) { return code == college.code; }
       
         // Friends
         friend ostream &operator << (ostream &, const College &);

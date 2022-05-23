@@ -14,7 +14,8 @@ using namespace std;
 void hDisplay(College &);
 void vDisplay(College &);
 void iDisplay(College &, int);
-void buildList(const string&, BinarySearchTree<College>&);
+void buildBST(const string&, BinarySearchTree<College>&);
+void searchManager(const BinarySearchTree<College>&);
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
     cout << "What is the input file's name? ";
     cin >> filename;
     /* Write your code here: build the BST from an input file  */
-    buildList(filename, bst);
+    buildBST(filename, bst);
      
     char option;
     cout << "Display Inorder [Y/N]? ";
@@ -51,11 +52,12 @@ int main()
     {
         cout  << "Leaf Nodes: " << endl;
         /* Write your code here: use hDisplay */
-
+        bst.printLeafNodes(hDisplay);
         cout << endl;
     }
 
-   /* Write your code here: test driver for search (See previous homeowrk assignments  */
+    /* Write your code here: test driver for search (See previous homeowrk assignments  */
+    searchManager(bst);
    
     return 0;
 }
@@ -63,12 +65,11 @@ int main()
 /* Write your code here */
 /* 
  This function reads data about colleges from a file and inserts them
- into a sorted linked list. The list is sorted in ascending order by code
+ into a bst. The bst is sorted in ascending order by code
  */
-void buildList(const string &filename, BinarySearchTree<College> &list)
+void buildBST(const string &filename, BinarySearchTree<College> &bst)
 {
     ifstream fin(filename);
-    cout << "Reading data from \"" << filename << "\"";
 
     if(!fin)
     {
@@ -90,7 +91,7 @@ void buildList(const string &filename, BinarySearchTree<College> &list)
        temp >> cost;
        // create a College object and initialize it with data from file
        College aCollege(rank, code, name, cost);
-       list.insert(aCollege);
+       bst.insert(aCollege);
     }
 
     fin.close();
@@ -130,3 +131,36 @@ void iDisplay(College &item, int level)
     cout << level << "). " << item.getCode() << endl;
 }
 
+/* 
+ Search manager: search the bst until the user enters Q to quit searching
+ Input Parameter: bst
+*/
+void searchManager(const BinarySearchTree<College> &bst)
+{
+    string targetCode = "";
+    College aCollege;
+
+    cout << "\n Search\n";
+    cout <<   "=======\n";
+
+    cin.ignore();
+    
+    while(toupper(targetCode[0]) != 'Q')
+    {
+        cout << "\nEnter a college code (or Q to stop searching) : \n";
+        getline(cin, targetCode);
+
+        if(toupper(targetCode[0]) != 'Q')
+        {
+            College targetCollege;
+            for (size_t i = 0; i < targetCode.length(); i++)
+                targetCode[i] = toupper(targetCode[i]);
+            targetCollege.setCode(targetCode);
+            if(bst.search(targetCollege, aCollege))
+                aCollege.vDisplay();
+            else
+                cout << "College \"" << targetCode << "\" was not found in this list." << endl;
+        }
+    }
+    cout << "___________________END SEARCH SECTION _____\n";
+}

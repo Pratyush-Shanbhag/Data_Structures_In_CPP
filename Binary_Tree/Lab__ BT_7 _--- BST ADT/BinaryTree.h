@@ -1,6 +1,6 @@
 // Binary tree abstract base class
 // Created by A. Student
-// Modified by:
+// Modified by: Pratyush Shanbhag
  
 #ifndef _BINARY_TREE
 #define _BINARY_TREE
@@ -10,53 +10,54 @@
 template<class ItemType>
 class BinaryTree
 {
-protected:
-	BinaryNode<ItemType>* rootPtr;		// ptr to root node
-	int count;							// number of nodes in tree
+    protected:
+        BinaryNode<ItemType>* rootPtr;		// ptr to root node
+        int count;							// number of nodes in tree
 
-public:
-	// "admin" functions
- 	BinaryTree() {rootPtr = 0; count = 0;}
-	BinaryTree(const BinaryTree<ItemType> & tree){ }
-   virtual ~BinaryTree() { destroyTree(rootPtr); }
-   
-	// common functions for all binary trees
- 	bool isEmpty() const	{return count == 0;}
-	int getCount() const {return count;}
-	void clear()			{destroyTree(rootPtr); rootPtr = 0; count = 0;}
-	void preOrder(void visit(ItemType &)) const {_preorder(visit, rootPtr);}
-   void inOrder(void visit(ItemType &)) const  {_inorder(visit, rootPtr);}
-	void postOrder(void visit(ItemType &)) const{_postorder(visit, rootPtr);}
-   void printTree(void visit(ItemType &, int)) const{_printTree(visit, rootPtr, 1);}
+    public:
+        // "admin" functions
+        BinaryTree() {rootPtr = 0; count = 0;}
+        BinaryTree(const BinaryTree<ItemType> & tree){ }
+    virtual ~BinaryTree() { destroyTree(rootPtr); }
+    
+        // common functions for all binary trees
+        bool isEmpty() const	{return count == 0;}
+        int getCount() const {return count;}
+        void clear()			{destroyTree(rootPtr); rootPtr = 0; count = 0;}
+        void preOrder(void visit(ItemType &)) const {_preorder(visit, rootPtr);}
+        void inOrder(void visit(ItemType &)) const  {_inorder(visit, rootPtr);}
+        void postOrder(void visit(ItemType &)) const{_postorder(visit, rootPtr);}
+        void printTree(void visit(ItemType &, int)) const{_printTree(visit, rootPtr, 1);}
+        void printLeafNodes(void visit(ItemType &)) const{_printLeafNodes(visit, rootPtr);}
 
-	// abstract functions to be implemented by derived class
-	virtual bool insert(const ItemType &newData) = 0;
-	//virtual bool remove(const ItemType &data) = 0;
-	virtual bool search(const ItemType &target, ItemType & returnedItem) const = 0;
+        // abstract functions to be implemented by derived class
+        virtual bool insert(const ItemType &newData) = 0;
+        //virtual bool remove(const ItemType &data) = 0;
+        virtual bool search(const ItemType &target, ItemType & returnedItem) const = 0;
 
-private:   
-	// delete all nodes from the tree
-	void destroyTree(BinaryNode<ItemType>* nodePtr);
+    private:   
+        // delete all nodes from the tree
+        void destroyTree(BinaryNode<ItemType>* nodePtr);
 
-	// internal traverse
-	void _preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
-	void _inorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
-	void _postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
-   void _printTree(void visit(ItemType &, int), BinaryNode<ItemType>* nodePtr, int level) const;
-   
-}; 
+        // internal traverse
+        void _preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+        void _inorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+        void _postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+        void _printTree(void visit(ItemType &, int), BinaryNode<ItemType>* nodePtr, int level) const;
+        void _printLeafNodes(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+    }; 
 
-//Destroy the entire tree
-template<class ItemType>
-void BinaryTree<ItemType>::destroyTree(BinaryNode<ItemType>* nodePtr)
-{
-    if(nodePtr) // != NULL
+    //Destroy the entire tree
+    template<class ItemType>
+    void BinaryTree<ItemType>::destroyTree(BinaryNode<ItemType>* nodePtr)
     {
-        destroyTree(nodePtr->getLeftPtr());
-        destroyTree(nodePtr->getRightPtr());
-        //cout << "DEBUG - Destructor: Now deleting " << nodePtr->getItem().getName() << endl;
-        delete nodePtr;
-    }
+        if(nodePtr) // != NULL
+        {
+            destroyTree(nodePtr->getLeftPtr());
+            destroyTree(nodePtr->getRightPtr());
+            //cout << "DEBUG - Destructor: Now deleting " << nodePtr->getItem().getName() << endl;
+            delete nodePtr;
+        }
 }  
 
 
@@ -70,8 +71,8 @@ void BinaryTree<ItemType>::_preorder(void visit(ItemType &), BinaryNode<ItemType
     {
         ItemType item = nodePtr->getItem();
         visit(item);
-        _inorder(visit, nodePtr->getLeftPtr());
-        _inorder(visit, nodePtr->getRightPtr());
+        _preorder(visit, nodePtr->getLeftPtr());
+        _preorder(visit, nodePtr->getRightPtr());
     }
 }  
 
@@ -96,8 +97,8 @@ void BinaryTree<ItemType>::_postorder(void visit(ItemType &), BinaryNode<ItemTyp
     if (nodePtr) // != NULL
     {
         ItemType item = nodePtr->getItem();
-        _inorder(visit, nodePtr->getLeftPtr());
-         _inorder(visit, nodePtr->getRightPtr());
+        _postorder(visit, nodePtr->getLeftPtr());
+        _postorder(visit, nodePtr->getRightPtr());
         visit(item);
     }
 }  
@@ -116,5 +117,20 @@ void BinaryTree<ItemType>::_printTree(void visit(ItemType &, int), BinaryNode<It
     }
 }
 
-#endif
+//Prints leaf nodes of the bst
+template<class ItemType>
+void BinaryTree<ItemType>::_printLeafNodes(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
+{
+    /* Write your code here */
+    if (nodePtr) // != NULL
+    {
+        ItemType item = nodePtr->getItem();
+        if(!nodePtr->getLeftPtr() && !nodePtr->getRightPtr())
+            visit(item);
+        
+        _printLeafNodes(visit, nodePtr->getLeftPtr());
+        _printLeafNodes(visit, nodePtr->getRightPtr());
+    }
+}
 
+#endif

@@ -1,6 +1,4 @@
-
 #include <iostream>
-
 #include "HashTable.h"
 
 using namespace std;
@@ -72,8 +70,6 @@ int main()
         else
             cout << endl << name << " not found!" << endl;
     }
-        
-    
-    
+ 
     return 0;
 }

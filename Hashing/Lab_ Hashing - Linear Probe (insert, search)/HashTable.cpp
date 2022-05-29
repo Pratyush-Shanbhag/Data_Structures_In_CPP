@@ -1,6 +1,6 @@
 // Implementation file for the Hash class
 // Written By: A. Student
-// Changed by:
+// Changed by: Pratyush Shanbhag
 
 #include <string>
 
@@ -51,7 +51,20 @@ bool HashTable::remove( Student &itemOut )
 *~**/
 bool HashTable::search( Student &itemOut, int &noCol, string key)
 {
-   /* write your code here */
+    /* write your code here */
+    int index = _hash(key);
+    int bucketsProbed = 0;
+
+    while(bucketsProbed < hashSize) {
+        if(hashAry[index].getOccupied() == 1 && hashAry[index].getItem().getName() == key) {
+            itemOut = hashAry[index].getItem();
+            noCol = hashAry[index].getNoCollisions();
+            return true;
+        }
+
+        index = (index + 1) % hashSize;
+        bucketsProbed++;
+    }
      
     return false;
 }

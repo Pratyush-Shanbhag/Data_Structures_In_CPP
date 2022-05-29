@@ -42,8 +42,6 @@ bool HashTable::insert( Student &itemIn )
         index = (index + 1) % hashSize;
         bucketsProbed++;      
     }
-   
-    return true;
 }
 
 /*~*~*~*

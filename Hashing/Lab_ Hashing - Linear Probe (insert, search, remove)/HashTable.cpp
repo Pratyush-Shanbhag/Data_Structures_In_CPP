@@ -1,6 +1,6 @@
 // Implementation file for the Hash class
 // Written By: A. Student
-// Changed by:
+// Changed by: Pratyush Shanbhag
 
 #include <string>
 
@@ -23,12 +23,26 @@ int HashTable::_hash(string key) const
   hash insert - linear probe
 *~**/
 
-bool HashTable::insert( Student &itemIn )
+bool HashTable::insert(Student &itemIn)
 {
     if ( count == hashSize)
         return false;
-   /* write your code here */
-   
+    /* write your code here */
+    int index = _hash(itemIn.getName());
+    int bucketsProbed = 0;
+
+    while(bucketsProbed < hashSize) {
+        if(hashAry[index].getOccupied() == 0) {
+            hashAry[index].setItem(itemIn);
+            hashAry[index].setNoCollisions(bucketsProbed);
+            hashAry[index].setOccupied(1);
+            count++;
+            return true;
+        }
+
+        index = (index + 1) % hashSize;
+        bucketsProbed++;      
+    }   
     return true;
 }
 
@@ -42,10 +56,23 @@ bool HashTable::insert( Student &itemIn )
    - if not found - returns false
 *~**/
 
-bool HashTable::remove( Student &itemOut, string key)
+bool HashTable::remove(Student &itemOut, string key)
 {
     /* Write your code here */
-    
+    int index = _hash(key);
+    int bucketsProbed = 0;
+
+    while(bucketsProbed < hashSize) {
+        if(hashAry[index].getOccupied() == 1 && hashAry[index].getItem().getName() == key) {
+            itemOut = hashAry[index].getItem();
+            hashAry[index] = HashNode();
+            count--;
+            return true;
+        }
+
+        index = (index + 1) % hashSize;
+        bucketsProbed++;
+    }
     return false;
 }
 
@@ -56,9 +83,21 @@ bool HashTable::remove( Student &itemOut, string key)
       - returns the number of collisions for this key 
    if not found, returns -1
 *~**/
-int HashTable::search( Student &itemOut, string key)
+int HashTable::search(Student &itemOut, string key)
 {
    /* write your code here */
+    int index = _hash(key);
+    int bucketsProbed = 0;
+
+    while(bucketsProbed < hashSize) {
+        if(hashAry[index].getOccupied() == 1 && hashAry[index].getItem().getName() == key) {
+            itemOut = hashAry[index].getItem();
+            return hashAry[index].getNoCollisions();
+        }
+
+        index = (index + 1) % hashSize;
+        bucketsProbed++;
+    }
      
-    return false;
+    return -1;
 }

@@ -1,6 +1,6 @@
 // Specification file for the Hash class
 // Written By: A. Student
-// Changed by:
+// Changed by: Pratyush Shanbhag
 
 
 #ifndef HASHTABLE_H_
@@ -12,28 +12,28 @@ using std::string;
 
 class HashTable
 {
-private:
-	HashNode* hashAry;
-	int hashSize;
-    int count;
-	
-public:
-	HashTable() { count = 0; hashSize = 53; hashAry = new HashNode[hashSize]; }
-	HashTable(int n)	{ count = 0; hashSize = n;	hashAry = new HashNode[hashSize]; }
-	~HashTable(){ delete [] hashAry; }
+    private:
+        HashNode* hashAry;
+        int hashSize;
+        int count;
+        
+    public:
+        HashTable() { count = 0; hashSize = 53; hashAry = new HashNode[hashSize]; }
+        HashTable(int n)	{ count = 0; hashSize = n;	hashAry = new HashNode[hashSize]; }
+        ~HashTable(){ delete [] hashAry; }
 
-	int getCount() const	{ return count; }
-    int getSize() const { return hashSize; }
-    double getLoadFactor() const {return 100.0 * count / hashSize; }
-    bool isEmpty() const	{ return count == 0; }
-    bool isFull()  const	{ return count == hashSize; }
-    
-    bool insert( Student &itemIn );
-    bool remove( Student &itemOut, string key);
-    int search( Student &target, string key);
-    
-private:
-    int _hash(string key) const;
+        int getCount() const	{ return count; }
+        int getSize() const { return hashSize; }
+        double getLoadFactor() const {return 100.0 * count / hashSize; }
+        bool isEmpty() const	{ return count == 0; }
+        bool isFull()  const	{ return count == hashSize; }
+        
+        bool insert( Student &itemIn );
+        bool remove( Student &itemOut, string key);
+        int search( Student &target, string key);
+        
+    private:
+        int _hash(string key) const;
 };
 
 #endif // HASHTABLE_H_

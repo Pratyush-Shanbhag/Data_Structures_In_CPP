@@ -3,7 +3,7 @@
  Homework 5
  
  Written By: A. Student
- Changed by:
+ Changed by: Pratyush Shanbhag
 *~**/
 
 #include <iostream>

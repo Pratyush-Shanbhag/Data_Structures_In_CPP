@@ -24,7 +24,7 @@ int HashTable::_hash(string key) const
 *~**/
 bool HashTable::insert( Student &itemIn )
 {
-    if ( count == hashSize)
+    if (isFull())
         return false;
     /* write your code here */
     int index = _hash(itemIn.getName());

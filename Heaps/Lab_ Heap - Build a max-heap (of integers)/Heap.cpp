@@ -41,41 +41,25 @@ void Heap::_reHeapDown(int rootdex)
 	if (left != -1) // if there's a left child
 	{
 		/* Write your code here */
-		int temp;
-		int index = rootdex;
 		int right = _findRightChild(rootdex);
-		if(right < count) {
-			if(heapAry[left] > heapAry[right]) {
-				if(heapAry[rootdex] < heapAry[left]) {
-					temp = heapAry[left];
-					heapAry[left] = heapAry[rootdex];
-					heapAry[rootdex] = temp;
+		int max = rootdex;
 
-					_reHeapDown(left);
-				}
-			}
-			else {
-				if(heapAry[rootdex] < heapAry[right]) {
-					temp = heapAry[right];
-					heapAry[right] = heapAry[rootdex];
-					heapAry[rootdex] = temp;
+		if(left < count && heapAry[left] > heapAry[rootdex])
+			max = left;
+		
+		if(right < count && heapAry[right] > heapAry[max])
+			max = right;
 
-					_reHeapDown(right);
-				}				
-			}
-		}
-		else {
-			if(heapAry[rootdex] < heapAry[left]) {
-				temp = heapAry[left];
-				heapAry[left] = heapAry[rootdex];
-				heapAry[rootdex] = temp;
+		if(max != rootdex) {
+			int temp = heapAry[rootdex];
+			heapAry[rootdex] = heapAry[max];
+			heapAry[max] = temp;
 
-				_reHeapDown(left);
-			}			
+			_reHeapDown(max);
 		}
 	}
-
 }
+
 /* *~*~*
  The public member function insertHeap inserts a new item into a heap.
  It calls _reheapUp.
@@ -86,6 +70,9 @@ bool Heap::insertHeap(int newItem)
 		return false;
 		
 	/* Write your code here */
+	heapAry[count] = newItem;
+	_reHeapUp(count);
+	count++;
 	
 	return true;
 }
@@ -100,5 +87,10 @@ bool Heap::deleteHeap(int &returnItem)
 		return false;
 		
 	/* Write your code here */
+	returnItem = heapAry[0];
+	count--;
+	heapAry[0] = heapAry[count];
+	_reHeapDown(0);
+	
 	return true;
 }

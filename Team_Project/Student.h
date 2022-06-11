@@ -22,9 +22,5 @@ class Student
         void setGpa(double g) {gpa = g;}
         string getName() const {return name;}
         double getGpa() const {return gpa;}
-        
-        // Overloaded operators
-        /* Write your code here */
-        bool operator==(const Student &stu) { return name == stu.getName(); }
 };
 #endif

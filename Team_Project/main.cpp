@@ -1,84 +1,64 @@
+/*~*~*~*
+ CIS 22C
+ Homework 5
+ 
+ Written By: A. Student
+ Changed by: Pratyush Shanbhag
+*~**/
+
 #include <iostream>
+
 #include "HashTable.h"
-#include "Student.h"
 
 using namespace std;
-
-int key_to_index(const Student &key, int size);
 
 int main()
 {
  
-    Student list[] = {{"tom", 2.5}, {"bob", 3.2}, {"boc", 3.2}, {"mia", 3.9}, {"jack", 4.0},
-        {"john", 3.9}, {"zoe", 3.5}, {"ann", 3.1}, {"obb", 2.2}, {"bbo", 3.3}, {"ccm", 1.5}, {"",0}};
+    Student list[] = {{"Tom", 2.5}, {"Bob", 3.2}, {"Boc", 3.2}, {"Linda", 3.9}, {"Tim", 4.0},
+        {"Vic", 3.9}, {"Ann", 3.5}, {"Dylan", 3.1}, {"obB", 2.2}, {"oBb", 3.7},
+        {"Bbo", 3.3}, {"bBo", 3.9}, {"boB", 2.3}, {"", 0}};
     
-    /* Write your code here: declare hash, a HashTable object that stores Student objects in its nodes */
-    HashTable<Student> hash;
+    HashTable hash;
     
     // build hash from array
     for (int i = 0; list[i].getName() != ""; i++)
     {
-        /* Write your code here: insert list[i] into the hash table */
-        hash.insert(list[i], key_to_index);
+        hash.insert(list[i]);
     }
     
         
     // test search
-    Student target[] = {{"zoe", 0}, {"mia", 0}, {"linda", 0}, {"bob", 0}, {"boc", 0}, {"obb", 0}, {"bbo", 0}, {"ccm", 0}, {"", 0}};
+    string target[] = {"Ann", "Daria","Tom", "Bob","Boc", "Linda", "Julia",
+                       "Dylan", "obB", "oBb", "Bbo", "bBo", "boB", ""};
     
-    for (int i = 0; target[i].getName() != ""; i++)
+    for (int i = 0; target[i] != ""; i++)
     {
-        Student item;  // will store a copy of the item found in the hash table
-        int nc;        // number of collisions if found, -1 if not found
-        
-        nc = /* Write your code here: call search to search for target[i] */ hash.search(item, target[i], key_to_index);
-        if (nc != -1)
-            cout << item.getName() << " " << item.getGpa() << " (" << nc << " collisions!)" << endl;
-        else
-            cout << target[i].getName() << " not found!" << endl;
-    }
-    
-    cout << "Load Factor: " << hash.getLoadFactor() << endl;
-  
-    // Add a new item to the hash table: reject duplicates
-    cout << "Test hash search/insert" << endl;
-
-    Student found; // will store a copy of the item found in the hash table
-    string name;   // name to insert 
-    double gpa;    // gpa to insert
-    cout << "Enter name or Q to quit: ";
-    cin >> name;
-    while ( name != "Q" )
-    {
-        /* Write your code here: create key, a Student object, to hold the name to search for */
-        Student key;
-        key.setName(name);
-
-        if (hash.search(found, key, key_to_index) != -1)
-            cout << endl << "Duplicate key: " << found.getName() << " - rejected! " << endl;
-        else
+        Student item;
+        int nc;
+        if ((nc = hash.search(item, target[i])) != -1)
         {
-            cout << "Enter gpa ";
-            cin >> gpa;
-            /* Write your code here: create item, a Student object, to hold the name and gpa to be inserted into the hash table */
-            Student item(name, gpa);
-            /* Write your code here: call insert to insert item into the hash table */
-            hash.insert(item, key_to_index);
+            cout << item.getName() << " " << item.getGpa() << " (" << nc << " collisions!)" << endl;
         }
-        cout << "Enter name: ";
-        cin >> name;
+        else
+            cout << target[i] << " not found!" << endl;
+            
     }
+    
     cout << "Load Factor: " << hash.getLoadFactor() << endl;
     
     // test delete
     cout << "Test delete" << endl;
     cout << "Enter name or Q to quit: ";
+    string name;
     cin >> name;
     while ( name != "Q" )
     {
-        Student itemOut, found, key(name, 0);
-        if (hash.remove(itemOut, key, key_to_index))
+        Student itemOut, found;
+        if (hash.remove(itemOut, name))
             cout << endl << itemOut.getName() << " " << itemOut.getGpa() << " - deleted!" << endl;
+        else
+            cout << name << " - not found!" << endl;
    
         cout << "Load Factor: " << hash.getLoadFactor() << endl;
     
@@ -92,9 +72,9 @@ int main()
      cin >> name;
      while ( name != "Q" )
      {
-         Student found, key(name,0);
+         Student found;
                 
-         if ((hash.search(found, key, key_to_index)) != -1)
+         if ((hash.search(found, name)) != -1)
              cout << endl << "Found: " << found.getName() << " " << found.getGpa() << endl;
          else
              cout << endl << name << " not found!" << endl;
@@ -102,17 +82,29 @@ int main()
          cin >> name;
      }
     
+    // Add a new item to the hash table: regject duplicates
+       cout << "Test hash search/insert" << endl;
+
+       Student found;
+       double gpa;
+       cout << "Enter name or Q to quit: ";
+       cin >> name;
+       while ( name != "Q" )
+       {
+           if (hash.search(found, name) != -1)
+               cout << endl << "Duplicate key: " << found.getName() << " - rejected! " << endl;
+           else
+           {
+               cout << "Enter gpa ";
+               cin >> gpa;
+               Student item(name, gpa);
+               hash.insert(item);
+               cout << name << " - inserted (" << hash.search(found, name) << " collisions)" << endl;
+           }
+           cout << "Enter name: ";
+           cin >> name;
+       }
+       cout << "Load Factor: " << hash.getLoadFactor() << endl;
+    
     return 0;
 }
-
-/*~*~*~*
- Hash function: takes the key and returns the index in the hash table
- *~**/
-int key_to_index(const Student &key, int size)
-{
-    string k = key.getName();
-    int sum = 0;
-    for (int i = 0; k[i]; i++)
-        sum += k[i];
-    return sum % size;
-};

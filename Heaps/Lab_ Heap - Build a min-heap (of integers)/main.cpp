@@ -11,9 +11,7 @@ using namespace std;
 
 int main()
 {
-	
-	Heap heap;
-	
+	Heap heap;	
 	
 	// build heap
     int num;
@@ -28,7 +26,6 @@ int main()
     cout << "Heap capacity: " << heap.getSize() << endl;
     cout << "Heap actual number of elements: " << heap.getCount() << endl;
 
-	
     // print items as they are deleted from the heap (sorted)
     if (heap.isEmpty())
         cout << "N/A";

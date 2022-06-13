@@ -20,13 +20,12 @@ void Heap::_reHeapUp(int lastndx)
 		int temp;
 		int parent = _findParent(lastndx);
 
-		while(lastndx && heapAry[lastndx] > heapAry[parent]) {
+		if(lastndx && heapAry[lastndx] > heapAry[parent]) {
 			temp = heapAry[parent];
 			heapAry[parent] = heapAry[lastndx];
 			heapAry[lastndx] = temp;
 
-			lastndx = parent;
-			parent = _findParent(lastndx);			
+			_reHeapUp(parent);	
 		}
 	}
 }
@@ -44,10 +43,10 @@ void Heap::_reHeapDown(int rootdex)
 		int right = _findRightChild(rootdex);
 		int max = rootdex;
 
-		if(left < count && heapAry[left] > heapAry[rootdex])
+		if(left < count && heapAry[left] > heapAry[max])
 			max = left;
 		
-		if(right < count && heapAry[right] > heapAry[max])
+		if(right != -1 && right < count && heapAry[right] > heapAry[max])
 			max = right;
 
 		if(max != rootdex) {

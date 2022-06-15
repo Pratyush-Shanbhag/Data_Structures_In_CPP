@@ -16,7 +16,7 @@ int HashTable::_hash(string key) const
 {
     long int sum = 0;
     for (int i = 0; i < key.length(); i++)
-        sum += key[i];
+        sum += key[i] * key[i] * key[i];
     return sum % hashSize;
 };
 

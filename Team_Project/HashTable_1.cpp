@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "HashTable.h"
+#include "HashTable_1.h"
 
 using namespace std;
 
@@ -23,7 +23,6 @@ int HashTable::_hash(string key) const
 /*~*~*~*
   hash insert - linear probe
 *~**/
-
 bool HashTable::insert(Student &itemIn)
 {
     if (isFull())
@@ -56,7 +55,6 @@ bool HashTable::insert(Student &itemIn)
        - returns true
    - if not found - returns false
 *~**/
-
 bool HashTable::remove(Student &itemOut, string key)
 {
     /* Write your code here */
@@ -101,4 +99,35 @@ int HashTable::search(Student &itemOut, string key)
     }
      
     return -1;
+}
+
+/*~*~*~*
+   hash search - linear probe
+   if found: 
+      - copy data to itemOut
+      - returns the number of collisions for this key 
+   if not found, returns -1
+*~**/
+int HashTable::getNumCollisions() const {
+    int sum = 0;
+    for(int i = 0; i < count; i++) {
+        sum += hashAry[i].getNoCollisions();
+    }
+    return sum;
+}
+
+/*~*~*~*
+   hash search - linear probe
+   if found: 
+      - copy data to itemOut
+      - returns the number of collisions for this key 
+   if not found, returns -1
+*~**/
+int HashTable::getLongestColPath() const {
+    int numCol = 0;
+    for(int i = 0; i < count; i++) {
+        if(numCol < hashAry[i].getNoCollisions())
+            numCol = hashAry[i].getNoCollisions();
+    }
+    return numCol;
 }

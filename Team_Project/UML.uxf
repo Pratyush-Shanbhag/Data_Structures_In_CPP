@@ -45,7 +45,7 @@
 +isFull(): bool
 +getLoadFactor(): double
 +getNumCollisions(): int
-+getLongestColPath: int
++getLongestColPath(): int
 +insert(itemIn: Student): bool
 +delete(itemOut: Student, key: string): bool
 +search(target: Student, key: string): int

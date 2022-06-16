@@ -7,8 +7,6 @@
 
 #include "Student.h"
 
-using std::string;
-
 class HashNode
 {
     private:

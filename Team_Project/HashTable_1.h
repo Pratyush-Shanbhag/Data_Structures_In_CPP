@@ -6,9 +6,8 @@
 #ifndef HASHTABLE_H_
 #define HASHTABLE_H_
 
-#include "HashNode.h"
-
-using std::string;
+#include "HashNode_1.h"
+#include <string>
 
 class HashTable
 {
@@ -22,18 +21,20 @@ class HashTable
         HashTable(int n)	{ count = 0; hashSize = n;	hashAry = new HashNode[hashSize]; }
         ~HashTable(){ delete [] hashAry; }
 
-        int getCount() const	{ return count; }
+        int getCount() const { return count; }
         int getSize() const { return hashSize; }
-        double getLoadFactor() const {return 100.0 * count / hashSize; }
-        bool isEmpty() const	{ return count == 0; }
-        bool isFull()  const	{ return count == hashSize; }
+        double getLoadFactor() const { return 100.0 * count / hashSize; }
+        int getNumCollisions() const;
+        int getLongestColPath() const;
+        bool isEmpty() const { return count == 0; }
+        bool isFull()  const { return count == hashSize; }
         
         bool insert( Student &itemIn );
-        bool remove( Student &itemOut, string key);
-        int search( Student &target, string key);
+        bool remove( Student &itemOut, std::string key);
+        int search( Student &itemOut, std::string key);
         
     private:
-        int _hash(string key) const;
+        int _hash(std::string key) const;
 };
 
 #endif // HASHTABLE_H_

@@ -1,44 +1,43 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>270</x><y>11</y><w>210</w><h>320</h></coordinates><panel_attributes>Main
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>270</x><y>0</y><w>290</w><h>310</h></coordinates><panel_attributes>Main
 --
 -bst: BST
--hashList: HashList
+-hash: HashTable
 -stack: Stack
 --
-+buildManager(): void
-+menuManager(): void
-+dataManager(): void
++buildBSTAndHash(filename: string,
+                                bst: BinarySearchTree&amp;,
+                                hash: HashTable&amp;): void
++menuOption(input: char): void
++searchManager(bst: BinarySearchTree&amp;): void
++printHeading(): void
 +displayMenu(): void
-+displayStatistics(): void
-+readFile(): void
-+writeToFile(): void
-+printIndentedTree(): void
-+undoDelete(): void
-+addOne(): void
-+deleteOne(): void
-+displayOne(): void
-+sortList(): void
++writeToFile(filename: string, hash: HashTable): void
++key_to_index(key: Student&amp;, size: int): int
 +showAuthors(): void
-+hdisplay(): void
-+vdisplay(): void
-+idisplay(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>551</y><w>490</w><h>190</h></coordinates><panel_attributes>BST
++hDisplay(item: Student&amp;): void
++vDisplay(item: Student&amp;): void
++iDisplay(item: Student&amp;, level: int): void
++findPrime(num: int): int
++rehash(hash: HashTable&amp;)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>710</y><w>340</w><h>190</h></coordinates><panel_attributes>BST
 --
 
 --
 +insert(itemIn: Student): bool
 +remove(itemOut: Student): bool
 +search(target: Student, returnedStudent: Student): bool
-+indentedTree(visit(Student, int), nodePtr: BinaryNode*, level: int): int
--_insert(parent: BinaryNode*, nodePtr: BinaryNode*, newNode: BinaryNode*): BinaryNode*
--_remove(parent: BinaryNode*, nodePtr: BinaryNode*, target: Student): BinaryNode*
--_search(treePtr: BinaryNode*, target: Student): BinaryNode*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>661</y><w>240</w><h>310</h></coordinates><panel_attributes>HashList
+-_insert(parent: BinaryNode*, nodePtr: BinaryNode*,
+             newNode: BinaryNode*): BinaryNode*
+-_remove(parent: BinaryNode*, nodePtr: BinaryNode*,
+                target: Student): BinaryNode*
+-_search(treePtr: BinaryNode*, target: Student): BinaryNode*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>610</y><w>440</w><h>290</h></coordinates><panel_attributes>HashTable
 --
 -hashArr: HashNode*
 -hashSize: int
 -count: int
 --
-+HashList():
-+HashList(int n):
-+~HashList():
++HashTable():
++HashTable(int n):
++~HashTable():
 +getSize(): int
 +getCount(): int
 +isEmpty(): bool
@@ -46,12 +45,11 @@
 +getLoadFactor(): double
 +getNumCollisions(): int
 +getLongestColPath(): int
-+insert(itemIn: Student): bool
-+delete(itemOut: Student, key: string): bool
-+search(target: Student, key: string): int
-+reHash(): void
--_hash(key: string): int
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>471</y><w>300</w><h>190</h></coordinates><panel_attributes>Stack
++insert(itemIn: Student&amp;, h(key, Student&amp;, size: int): int): bool
++remove(itemOut: Student&amp;, key: Student&amp;, h(key, Student&amp;, size: int): int): bool
++search(itemOut: Student&amp;, key: Student&amp;, h(key, Student&amp;, size: int): int): int
++_rehash(ht: HashTable&amp;, h(key, Student&amp;, size: int): int): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>380</y><w>300</w><h>190</h></coordinates><panel_attributes>Stack
 --
 -StackNode { value: Student, next: StackNode* }: struct
 -top: StackNode*
@@ -63,34 +61,34 @@
 +pop(itemOut: Student): bool
 +peek(): Student
 +isEmpty(): bool
-+getLength(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>371</y><w>260</w><h>220</h></coordinates><panel_attributes>HashNode
++getLength(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>360</y><w>260</w><h>220</h></coordinates><panel_attributes>HashNode
 --
 -item: Student
 -occupied: int
--numCollisions: int
+-noCollisions: int
 --
 +HashNode():
 +HashNode(anItem: Student):
 +HashNode(anItem: Student, ocp: int, nCol: int):
 +setItem(anItem: Student):
 +setOccupied(ocp: int):
-+setNumCollisions(nCol: int):
++setNoCollisions(nCol: int):
 +getItem(): Student
 +getOccupied(): int
-+getNumCollisions(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>11</y><w>250</w><h>350</h></coordinates><panel_attributes>Student
++getNoCollisions(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>260</w><h>350</h></coordinates><panel_attributes>Student
 --
 -stu_id: string
 -name: string
 -address: string
--phone: int
+-phone: long
 -year: int
 --
-setStuId(id: string): void
+setStudent(id: string): void
 +setName(nm: string): void
 +setAddress(ad: string): void
 +setPhone(ph: int): void
 +setYear(yr: int): void
-+getStu_Id(): string
++getStudent(): string
 +getName(): string
 +getAddress(): string
 +getPhone(): int
@@ -100,8 +98,8 @@ setStuId(id: string): void
 +operator&lt;(s: Student): bool
 +operator&gt;(s: Student): bool
 +operator==(s: Student): bool
-+operator&lt;&lt;(os: ostream, s: Student): ostream
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>241</y><w>350</w><h>280</h></coordinates><panel_attributes>/BinaryTree/
++operator&lt; &lt;(os: ostream, s: Student): ostream
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>330</y><w>340</w><h>330</h></coordinates><panel_attributes>/BinaryTree/
 --
 #rootPtr: BinaryNode*
 #count: int
@@ -109,30 +107,36 @@ setStuId(id: string): void
 +BinaryTree():
 +~BinaryTree():
 +isEmpty(): bool
++clear(): void
 +getCount(): int
-+preOrder(visit(Student): void): void
-+inOrder(visit(Student): void): void
-+postOrder(visit(Student): void): void
-+insert(itemIn: Student): bool
-+remove(itemOut: Student): bool
-+search(target: Student, returnedStudent: Student): bool
++preOrder(visit(Student&amp;): void): void
++inOrder(visit(Student&amp;): void): void
++postOrder(visit(Student&amp;): void): void
++printTree(visit(Student&amp;, int): void): void
++insert(itemIn: Student&amp;): bool
++remove(itemOut: Student&amp;): bool
++search(target: Student&amp;, returnedStudent: Student&amp;): bool
 -destroyTree(nodePtr: BinaryNode*): void
--_preOrder(visit(Student): void, nodePtr: BinaryNode*): void
--_inOrder(visit(Student): void, nodePtr: BinaryNode*): void
--_postOrder(visit(Student): void, nodePtr: BinaryNode*): void
+-_preOrder(visit(Student&amp;): void, nodePtr: BinaryNode*): void
+-_inOrder(visit(Student&amp;): void, nodePtr: BinaryNode*): void
+-_postOrder(visit(Student&amp;): void, nodePtr: BinaryNode*): void
+-printTree(visit(Student&amp;, int): void, nodePtr: BinaryNode*,
+                 level: int): void
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>11</y><w>380</w><h>200</h></coordinates><panel_attributes>BinaryNode
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>50</y><w>360</w><h>230</h></coordinates><panel_attributes>BinaryNode
 --
 -item: Student
 -leftPtr: BinaryNode*
 -rightPtr: BinaryNode*
 --
 +BinaryNode(anItem: Student):
-+BinaryNode(anItem: Student, left: BinaryNode*, right: BinaryNode*):
--setItem(anItem: Student): void
--setLeftPtr(left: BinaryNode*): void
--setRightPtr(right: BinaryNode*): void
--getItem(): Student
--getLeftPtr(): BinaryNode*
--getRightPtr(): BinaryNode*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>820</x><y>511</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>321</y><w>100</w><h>360</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;340</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>581</y><w>40</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>351</y><w>350</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;330;20</additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>350</y><w>60</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;120</additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>0</y><w>580</w><h>380</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;360;560;10</additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>200</y><w>200</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;40</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>320</y><w>230</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>210;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>230</y><w>510</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;490;10</additional_attributes></element></diagram>
++BinaryNode(anItem: Student, left: BinaryNode*,
+                      right: BinaryNode*):
++setItem(anItem: Student): void
++setLeftPtr(left: BinaryNode*): void
++setRightPtr(right: BinaryNode*): void
++getItem(): Student
++getLeftPtr(): BinaryNode*
++getRightPtr(): BinaryNode*
++isLeaf(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>650</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>300</y><w>280</w><h>330</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>260;10;10;310</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>570</y><w>330</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>310;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>340</y><w>360</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;340;20</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>339</y><w>60</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;40</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>39</y><w>680</w><h>330</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;310;660;10</additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>269</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>299</y><w>280</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>260;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>299</y><w>400</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;380;30</additional_attributes></element></diagram>

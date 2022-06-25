@@ -29,9 +29,11 @@ class HashTable
         bool isEmpty() const { return count == 0; }
         bool isFull()  const { return count == hashSize; }
         
-        bool insert( Student &itemIn );
-        bool remove( Student &itemOut, std::string key);
-        int search( Student &itemOut, std::string key);
+        bool insert(Student &itemIn);
+        bool remove(Student &itemOut, std::string key);
+        int search(Student &itemOut, std::string key);
+
+        void rehash(HashTable &ht);
         
     private:
         int _hash(std::string key) const;

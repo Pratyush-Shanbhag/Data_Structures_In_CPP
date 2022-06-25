@@ -37,13 +37,13 @@ bool HashTable::insert(Student &itemIn)
             hashAry[index].setNoCollisions(bucketsProbed);
             hashAry[index].setOccupied(1);
             count++;
+            rehash();
             return true;
         }
 
         index = (index + 1) % hashSize;
         bucketsProbed++;      
     }   
-    return true;
 }
 
 /*~*~*~*
@@ -130,4 +130,15 @@ int HashTable::getLongestColPath() const {
             numCol = hashAry[i].getNoCollisions();
     }
     return numCol;
+}
+
+/*~*~*~*
+   hash search - linear probe
+   if found: 
+      - copy data to itemOut
+      - returns the number of collisions for this key 
+   if not found, returns -1
+*~**/
+void HashTable::rehash(HashTable &ht) {
+
 }

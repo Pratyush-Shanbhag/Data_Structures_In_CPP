@@ -2,6 +2,14 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "algorithm": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp",
+        "ios": "cpp",
+        "locale": "cpp",
+        "iomanip": "cpp",
+        "iosfwd": "cpp"
     }
 }

@@ -4,10 +4,10 @@
  This program builds and displays a sorted list
  The list is sorted in ascending order by name
  
- Modified by:
- IDE:
- 
+ Modified by: Pratyush Shanbhag
+ IDE: VSCode
  */
+
 #include <iostream>
 #include <string>
 #include "StudentList.h"
@@ -40,9 +40,9 @@ int main()
 void buildList(StudentList &list)
 {
     // Define and initialize an array of Student objects
-    Student s[10] =
-    {{2.3, "Tom"}, {2.5, "John"}, {3.1, "Paul"}, {3.9, "Linda"}, {3.6, "Bob"}, {2.7, "Ann"}, {4.0, "Mary"}, {3.2, "Andy"}, {0, "#"}};
-    
+    Student s[10] = {Student(2.3, "Tom"), Student(2.5, "John"), Student(3.1, "Paul"), Student(3.9, "Linda"), Student(3.6, "Bob"),
+                     Student(2.7, "Ann"), Student(4.0, "Mary"), Student(3.2, "Andy"), Student(0, "#")};
+        
     //Insert data from array into the linked list
     for (int i = 0; s[i].getName() != "#" ; i++)
     {
@@ -62,7 +62,7 @@ void deleteTestDriver(StudentList &list)
     for (int i = 0; toDelete[i] != "#"; i++)
     {
         cout << "   " << toDelete[i];
-        if (/* Write your code here */ ) // call the deleteNode member function 
+        if (list.deleteNode(toDelete[i])) // call the deleteNode member function 
             cout << " - deleted\n";
         else
             cout << " - not found\n";

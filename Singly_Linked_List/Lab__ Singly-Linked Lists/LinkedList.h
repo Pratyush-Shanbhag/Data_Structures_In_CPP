@@ -1,6 +1,6 @@
 // Specification file for the LinkedList class
 // Written By: A. Student
-// Changed By:
+// Changed By: Pratyush Shanbhag
 // IDE: Xcode
 
 #ifndef LINKED_LIST_H

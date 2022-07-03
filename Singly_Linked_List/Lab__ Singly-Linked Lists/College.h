@@ -1,6 +1,6 @@
 // Specification file for the College class
 // Written By: A. Student
-// Changed By:
+// Changed By: Pratyush Shanbhag
 // IDE: Xcode
 
 #ifndef COLLEGE_H
@@ -45,8 +45,8 @@ class College
         int getCost() const {return cost;}
 
         //other functions
-        void hDdisplay()const;
-        void vDisplay()const;
+        void vDisplay() const;
+        friend std::ostream& operator<<(std::ostream &os, const College &college);
 };
 
 #endif

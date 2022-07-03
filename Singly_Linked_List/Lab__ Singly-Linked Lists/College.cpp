@@ -1,6 +1,6 @@
 // Implementation file for the College class
 // Written By: A. Student
-// Changed By:
+// Changed By: Pratyush Shanbhag
 // IDE: Xcode
 
 
@@ -38,15 +38,17 @@ College::College(int rk, string cd, string nm, int ct)
 // Displays the values of the College object member variables
 // on one line (horizontal display)
 //***********************************************************
-void College::hDdisplay() const
+ostream& operator<<(ostream &os, const College &college)
 {
-    cout << left;
-    cout << " " << setw(4) << code << "  ";
-    cout << " " << setw(2) << rank << "  ";
-    cout << " " << setw(27)<< name << "  ";
-    cout << right;
-    cout << " " << setw(7) << cost << " ";
-    cout << left << endl;
+    os << left;
+    os << " " << setw(4) << college.code << "  ";
+    os << " " << setw(2) << college.rank << "  ";
+    os << " " << setw(27)<< college.name << "  ";
+    os << right;
+    os << " " << setw(7) << college.cost << " ";
+    os << left << endl;
+
+    return os;
 }
 
 //***********************************************************
@@ -59,4 +61,3 @@ void College::vDisplay() const
     cout << "       School Name: " << name << endl;
     cout << "Cost of Attendance: $" << cost << endl;
 }
-

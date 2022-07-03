@@ -1,6 +1,6 @@
 // Implementation file for the LinkedList class
 // Written By: A. Student
-// Changed By:
+// Changed By: Pratyush Shanbhag
 // IDE: Xcode
 
 #include <iostream>
@@ -78,7 +78,7 @@ bool LinkedList::deleteNode(string target)
         pCur = pCur->next;
     }
     
-    // If found, delte the node
+    // If found, delete the node
     if (pCur && pCur->college.getCode() == target)
     {
         pPre->next = pCur->next;
@@ -106,7 +106,7 @@ void LinkedList::displayList() const
      while (pCur)
      {
          // Display the value in this node.
-         pCur->college.hDdisplay();
+         cout << pCur->college;
          
          // Move to the next node.
          pCur = pCur->next;
@@ -124,7 +124,16 @@ bool LinkedList::searchList(string target, College &dataOut) const
     bool found = false; // assume target not found
     Node *pCur;         // To move through the list
     
-    /* Write your code here */
+    pCur = head->next;
+
+    while(pCur && pCur->college.getCode() < target) {
+        pCur = pCur->next;
+    }
+
+    if(pCur && pCur->college.getCode() == target) {
+        dataOut = pCur->college;
+        found = true;
+    }
     
     return found;
 }
@@ -155,4 +164,3 @@ LinkedList::~LinkedList()
     
     delete head; // delete the sentinel node
 }
-
